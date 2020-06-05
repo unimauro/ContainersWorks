@@ -15,8 +15,7 @@ RUN apt-get clean \
         && grep "^X11UseLocalhost" /etc/ssh/sshd_config || echo "X11UseLocalhost no" >> /etc/ssh/sshd_config
 ADD requirements.txt /workspace/requirements.txt
 RUN pip install -r /workspace/requirements.txt
-RUN echo "/home/unimauo/private.key.pub" \
-        >> /root/.ssh/authorized_keys
+COPY id_rsa.pub /root/.ssh/authorized_keys
 RUN echo "export PATH=/opt/conda/bin:$PATH" >> /root/.profile
 ENTRYPOINT ["sh", "-c", "/usr/sbin/sshd && bash"]
 CMD ["bash"]
