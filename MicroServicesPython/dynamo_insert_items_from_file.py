@@ -17,3 +17,15 @@ class DynamoRepository:
                 int(event_count)},
             UpdateExpression="ADD EventCount :eventCount")
         return response
+
+######
+import csv
+table_name = 'user-visits-sam'
+input_data_path = '../sample_data/dynamodb-sample-data.txt'
+dynamo_repo = DynamoRepository(table_name)
+with open(input_data_path, 'r') as sample_file:
+    csv_reader = csv.DictReader(sample_file)
+    for row in csv_reader:
+        response = dynamo_repo.update_dynamo_event_counter(row['EventId'],                                                            row['EventDay'],                                                            row['EventCount'])
+        print(response)
+
