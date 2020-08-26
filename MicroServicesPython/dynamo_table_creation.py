@@ -29,3 +29,6 @@ def create_dynamo_table(table_name_value, enable_streams=False,
 def main():
     table_name = 'user-visits'
     create_dynamo_table(table_name, False, 1, 1)
+
+if __name__ == '__main__':
+    main()
