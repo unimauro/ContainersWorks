@@ -1,0 +1,6 @@
+Resources:
+        lambdadynamodataapi:
+          Type: AWS::Serverless::Function
+          Properties:
+            Handler: lambda_return_dynamo_records.lambda_handler
+            Runtime: python3.7
